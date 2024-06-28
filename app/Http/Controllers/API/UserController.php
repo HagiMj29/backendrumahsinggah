@@ -50,4 +50,52 @@ class UserController extends Controller
             return response()->json(['user' => $user], 200);
         }
     }
+
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $validateData = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'password' => 'nullable|min:8',
+            'phone' => 'required',
+            'address' => 'required',
+            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'status' => 'required',
+        ]);
+
+        if ($request->hasFile('picture')) {
+            if ($user->picture && file_exists(public_path('images/' . $user->picture))) {
+                unlink(public_path('images/' . $user->picture));
+            }
+
+            $file = $request->file('picture');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images'), $filename);
+            $validateData['picture'] = $filename;
+        }
+
+        if ($request->filled('password')) {
+            $validateData['password'] = bcrypt($validateData['password']);
+        } else {
+            unset($validateData['password']);
+        }
+
+        try {
+            $user->update($validateData);
+            return response()->json(['message' => 'User updated successfully'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Failed to update user', 'error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function destroy(User $user)
+    {
+        if ($user->delete()) {
+            return response()->json(['message' => 'User Delete successfully'], 200);
+        } else {
+            return response()->json(['message' => 'User Delete Error'], 500);
+        }
+    }
 }

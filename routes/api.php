@@ -17,5 +17,6 @@ use App\Http\Controllers\API\UserController;
 
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
-
 Route::post('/register', [UserController::class, 'register']);
+Route::post('users/{id}', [UserController::class, 'update']);
+Route::delete('users/{user}', [UserController::class, 'destroy']);
