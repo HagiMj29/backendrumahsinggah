@@ -8,12 +8,12 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-solid fa-person"></i></div>
                         User Tabel
                     </a>
-                    {{-- <a class="nav-link {{ Route::is('category.index') ? 'active' : '' }}"
-                        href="{{ route('category.index') }}">
-                        <div class="sb-nav-link-icon "><i class="fas fa-solid fa-list"></i></div>
-                        Categories
-                    </a>
-                    <a class="nav-link {{ Route::is('product.index') ? 'active' : '' }}"
+                    <a class="nav-link {{ Route::is('homestay.index') ? 'active' : '' }}"
+                        href="{{ route('homestay.index') }}">
+                        <div class="sb-nav-link-icon "><i class="fas fa fa-home"></i></div>
+                        Homestay
+                    </a> 
+                    {{-- <a class="nav-link {{ Route::is('product.index') ? 'active' : '' }}"
                         href="{{ route('product.index') }}">
                         <div class="sb-nav-link-icon"><i class="fas fa-solid fa-shop"></i></div>
                         Product
@@ -30,7 +30,7 @@
                     <a class="nav-link" href="index.html">
                         <div class="sb-nav-link-icon"><i class="fas fa-solid fa-cart-shopping"></i></div>
                         Carts
-                    </a> --}}
+                    </a>  --}}
                 </div>
             </div>
         </nav>

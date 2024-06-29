@@ -11,6 +11,29 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
 
+    public function index()
+    {
+        $users = User::latest()->get();
+
+        $result = $users->map(function ($data){
+            
+            return [
+                'id'=>$data->id,
+                'name'=>$data->name,
+                'email'=>$data->email,
+                'phone'=>$data->phone,
+                'address'=>$data->address,
+                'picture'=>$data->picture,
+                'status'=>$data->status,
+            ];
+
+        });
+
+        return response()->json(['message' => 'Data Berhasil di Akses', 'result'=>$result], 200);
+    }
+
+
+
     public function register(Request $request){
 
         $request->validate([

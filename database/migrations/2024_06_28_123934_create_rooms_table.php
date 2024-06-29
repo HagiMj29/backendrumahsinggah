@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('description');
             $table->integer('quota');
             $table->double('price');
-            $table->price('picture');
+            $table->string('picture');
             $table->timestamps();
         });
     }
