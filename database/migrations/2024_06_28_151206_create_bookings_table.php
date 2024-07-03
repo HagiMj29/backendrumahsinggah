@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('homestays_id');
             $table->foreignId('rooms_id');
             $table->integer('day');
-            $table->double('total_price');
+            $table->decimal('total_price', 10, 2);
             $table->enum('status',['process','sucesss','abort']);
             $table->timestamps();
         });

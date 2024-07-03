@@ -6,24 +6,24 @@
                     <div class="sb-sidenav-menu-heading">Menu</div>
                     <a class="nav-link {{ Route::is('users.index') ? 'active' : '' }}" href="{{ route('users.index') }}">
                         <div class="sb-nav-link-icon"><i class="fas fa-solid fa-person"></i></div>
-                        User Tabel
+                        Users Tabel
                     </a>
                     <a class="nav-link {{ Route::is('homestay.index') ? 'active' : '' }}"
                         href="{{ route('homestay.index') }}">
                         <div class="sb-nav-link-icon "><i class="fas fa fa-home"></i></div>
-                        Homestay
+                        Homestays
                     </a> 
-                    {{-- <a class="nav-link {{ Route::is('product.index') ? 'active' : '' }}"
-                        href="{{ route('product.index') }}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-solid fa-shop"></i></div>
-                        Product
+                    <a class="nav-link {{ Route::is('room.index') ? 'active' : '' }}"
+                        href="{{ route('room.index') }}">
+                        <div class="sb-nav-link-icon"><i class="fas fa fa-bed"></i></div>
+                        Rooms
                     </a>
-                    <a class="nav-link" {{ Route::is('order.index') ? 'active' : '' }}"
-                        href="{{ route('order.index') }}">
+                    <a class="nav-link {{ Route::is('booking.index') ? 'active' : '' }}"
+                        href="{{ route('booking.index') }}">
                         <div class="sb-nav-link-icon"><i class="fas fa-solid fa-circle-down"></i></div>
-                        Order
+                        Booking
                     </a>
-                    <a class="nav-link" href="index.html">
+                    {{-- <a class="nav-link" href="index.html">
                         <div class="sb-nav-link-icon"><i class="fas fa-solid fa-dollar-sign"></i></div>
                         Payments
                     </a>

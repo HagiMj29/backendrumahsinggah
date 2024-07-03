@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\HomestayController;
+use App\Http\Controllers\API\RoomController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
@@ -24,3 +25,5 @@ Route::post('users/{id}', [UserController::class, 'update']);
 Route::delete('users/{user}', [UserController::class, 'destroy']);
 
 Route::get('/homestay', [HomestayController::class, 'index']);
+
+Route::get('/room', [RoomController::class, 'index']);

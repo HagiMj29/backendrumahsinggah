@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\HomestayController;
+use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -30,4 +32,18 @@ Route::post('homestay/store', [HomestayController::class, 'store'])->name('homes
 Route::get('homestay/{homestay}/edit', [HomestayController::class, 'edit'])->name('homestay.edit');
 Route::put('homestay/{homestay}', [HomestayController::class, 'update'])->name('homestay.update');
 Route::delete('homestay/{homestay}', [HomestayController::class, 'destroy'])->name('homestay.destroy');
+
+Route::get('room.index', [RoomController::class, 'index'])->name('room.index');
+Route::get('room.create', [RoomController::class, 'create'])->name('room.create');
+Route::post('room/store', [RoomController::class, 'store'])->name('room.store');
+Route::get('room/{room}/edit', [RoomController::class, 'edit'])->name('room.edit');
+Route::put('room/{room}', [RoomController::class, 'update'])->name('room.update');
+Route::delete('room/{room}', [RoomController::class, 'destroy'])->name('room.destroy');
+
+Route::get('booking.index', [BookingController::class, 'index'])->name('booking.index');
+Route::get('booking.create', [BookingController::class, 'create'])->name('booking.create');
+Route::post('booking/store', [BookingController::class, 'store'])->name('booking.store');
+Route::get('booking/{room}/edit', [BookingController::class, 'edit'])->name('booking.edit');
+Route::put('booking/{room}', [BookingController::class, 'update'])->name('booking.update');
+Route::delete('booking/{room}', [BookingController::class, 'destroy'])->name('booking.destroy');
 

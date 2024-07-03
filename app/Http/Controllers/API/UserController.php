@@ -85,7 +85,7 @@ class UserController extends Controller
             'phone' => 'required',
             'address' => 'required',
             'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status' => 'required',
+            'status' => 'user',
         ]);
 
         if ($request->hasFile('picture')) {
@@ -105,9 +105,11 @@ class UserController extends Controller
             unset($validateData['password']);
         }
 
+        $result =$validateData;
+
         try {
             $user->update($validateData);
-            return response()->json(['message' => 'User updated successfully'], 200);
+            return response()->json(['message' => 'User updated successfully','result' => $result], 200);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Failed to update user', 'error' => $e->getMessage()], 500);
         }
