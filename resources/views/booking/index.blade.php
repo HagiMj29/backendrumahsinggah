@@ -28,6 +28,7 @@
                     <th class="text-center">Day</th>
                     <th class="text-center">Total Price</th>
                     <th class="text-center">Status</th>
+                    <th class="text-center">Room Status</th>
                     <th class="text-center">Aksi</th>
                 </thead>
                 <tbody>
@@ -43,9 +44,13 @@
                             <td class="text-center">{{ $data->day }}</td>
                             <td class="text-center">{{ $data->total_price }}</td>
                             <td class="text-center">{{ $data->status }}</td>
+                            <td class="text-center">{{ $data->status_room }}</td>
                             <td class="text-center">
-                                {{-- <a href="{{route('booking.edit',['booking'=>$data->id])}}" class="btn btn-warning btn-circle">
+                                <a href="{{route('booking.edit',['booking'=>$data->id])}}" class="btn btn-warning btn-circle">
                                     <i class="fas fa-pencil-alt"></i>
+                                </a>
+                                <a href="{{route('booking.checkout_page',['booking'=>$data->id])}}" class="btn btn-info btn-circle">
+                                    <i class="fas fa fa-caret-square-o-down"></i>
                                 </a>
                                 <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{route('booking.destroy', ['booking'=>$data->id])}}" method="POST" style="display:inline-block;">
                                     @csrf
@@ -53,7 +58,7 @@
                                     <button class="btn btn-danger btn-circle">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
-                                </form> --}}
+                                </form>
                             </td>
                         </tr>
                     @empty

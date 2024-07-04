@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\BookingController;
 use App\Http\Controllers\API\HomestayController;
 use App\Http\Controllers\API\RoomController;
 use Illuminate\Http\Request;
@@ -27,3 +28,6 @@ Route::delete('users/{user}', [UserController::class, 'destroy']);
 Route::get('/homestay', [HomestayController::class, 'index']);
 
 Route::get('/room', [RoomController::class, 'index']);
+
+Route::get('/booking', [BookingController::class, 'index']);
+Route::post('/booking', [BookingController::class, 'store']);

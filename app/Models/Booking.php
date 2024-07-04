@@ -17,6 +17,7 @@ class Booking extends Model
         'day',
         'total_price',
         'status',
+        'status_room',
     ];
 
     public function user(): BelongsTo

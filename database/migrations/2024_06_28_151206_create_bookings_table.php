@@ -18,7 +18,8 @@ return new class extends Migration
             $table->foreignId('rooms_id');
             $table->integer('day');
             $table->decimal('total_price', 10, 2);
-            $table->enum('status',['process','sucesss','abort']);
+            $table->enum('status',['process','success','abort']);
+            $table->enum('status_room',['occupied','empty']);
             $table->timestamps();
         });
     }

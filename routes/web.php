@@ -43,7 +43,9 @@ Route::delete('room/{room}', [RoomController::class, 'destroy'])->name('room.des
 Route::get('booking.index', [BookingController::class, 'index'])->name('booking.index');
 Route::get('booking.create', [BookingController::class, 'create'])->name('booking.create');
 Route::post('booking/store', [BookingController::class, 'store'])->name('booking.store');
-Route::get('booking/{room}/edit', [BookingController::class, 'edit'])->name('booking.edit');
-Route::put('booking/{room}', [BookingController::class, 'update'])->name('booking.update');
-Route::delete('booking/{room}', [BookingController::class, 'destroy'])->name('booking.destroy');
+Route::get('booking/{booking}/edit', [BookingController::class, 'edit'])->name('booking.edit');
+Route::put('booking/{booking}', [BookingController::class, 'update'])->name('booking.update');
+Route::delete('booking/{booking}', [BookingController::class, 'destroy'])->name('booking.destroy');
+Route::get('/booking/{booking}/checkout', [BookingController::class, 'checkout_page'])->name('booking.checkout_page');
+Route::put('/booking/{booking}/checkout', [BookingController::class, 'checkout'])->name('booking.checkout');
 
