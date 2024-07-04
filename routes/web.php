@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\HomestayController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -49,3 +50,9 @@ Route::delete('booking/{booking}', [BookingController::class, 'destroy'])->name(
 Route::get('/booking/{booking}/checkout', [BookingController::class, 'checkout_page'])->name('booking.checkout_page');
 Route::put('/booking/{booking}/checkout', [BookingController::class, 'checkout'])->name('booking.checkout');
 
+Route::get('review.index', [ReviewController::class, 'index'])->name('review.index');
+Route::get('review.create', [ReviewController::class, 'create'])->name('review.create');
+Route::post('review/review', [ReviewController::class, 'store'])->name('review.store');
+Route::get('review/{review}/edit', [ReviewController::class, 'edit'])->name('review.edit');
+Route::put('review/{review}', [ReviewController::class, 'update'])->name('review.update');
+Route::delete('review/{review}', [ReviewController::class, 'destroy'])->name('review.destroy'); 

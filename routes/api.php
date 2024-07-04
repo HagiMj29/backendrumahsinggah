@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\API\BookingController;
 use App\Http\Controllers\API\HomestayController;
+use App\Http\Controllers\API\ReviewController;
 use App\Http\Controllers\API\RoomController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,3 +33,6 @@ Route::get('/room', [RoomController::class, 'index']);
 
 Route::get('/booking', [BookingController::class, 'index']);
 Route::post('/booking', [BookingController::class, 'store']);
+
+
+Route::get('/review', [ReviewController::class, 'index']);
