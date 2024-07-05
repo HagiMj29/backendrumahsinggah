@@ -41,4 +41,4 @@ Route::post('/review', [ReviewController::class, 'store']);
 Route::put('reviews/{review}', [ReviewController::class, 'update']);
 Route::delete('reviews/{review}', [ReviewController::class, 'destroy']);
 
-Route::get('/galey', [GaleryController::class, 'index']);
+Route::get('/galery', [GaleryController::class, 'index']);
