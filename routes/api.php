@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\BookingController;
 use App\Http\Controllers\API\GaleryController;
 use App\Http\Controllers\API\HomestayController;
+use App\Http\Controllers\API\HomestayNearHospitalController;
 use App\Http\Controllers\API\ReviewController;
 use App\Http\Controllers\API\RoomController;
 use Illuminate\Http\Request;
@@ -45,3 +46,5 @@ Route::get('/galery', [GaleryController::class, 'index']);
 
 Route::post('check-email', [UserController::class, 'checkEmail']);
 Route::post('reset-password/{id}', [UserController::class, 'resetPassword']);
+
+Route::get('/homestayhospital', [HomestayNearHospitalController::class, 'index']);

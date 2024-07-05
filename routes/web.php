@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\GaleryController;
 use App\Http\Controllers\HomestayController;
+use App\Http\Controllers\HomestayNearHospitalController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
@@ -63,4 +65,18 @@ Route::get('galery.create', [GaleryController::class, 'create'])->name('galery.c
 Route::post('galery/review', [GaleryController::class, 'store'])->name('galery.store');
 Route::get('galery/{galery}/edit', [GaleryController::class, 'edit'])->name('galery.edit');
 Route::put('galery/{galery}', [GaleryController::class, 'update'])->name('galery.update');
-Route::delete('galery/{galery}', [GaleryController::class, 'destroy'])->name('galery.destroy'); 
+Route::delete('galery/{galery}', [GaleryController::class, 'destroy'])->name('galery.destroy');
+
+Route::get('favorite.index', [FavoriteController::class, 'index'])->name('favorite.index');
+Route::get('favorite.create', [FavoriteController::class, 'create'])->name('favorite.create');
+Route::post('favorite/review', [FavoriteController::class, 'store'])->name('favorite.store');
+Route::get('favorite/{favorite}/edit', [FavoriteController::class, 'edit'])->name('favorite.edit');
+Route::put('favorite/{favorite}', [FavoriteController::class, 'update'])->name('favorite.update');
+Route::delete('favorite/{favorite}', [FavoriteController::class, 'destroy'])->name('favorite.destroy');
+
+Route::get('homestayhospital.index', [HomestayNearHospitalController::class, 'index'])->name('homestayhospital.index');
+Route::get('homestayhospital.create', [HomestayNearHospitalController::class, 'create'])->name('homestayhospital.create');
+Route::post('homestayhospital/review', [HomestayNearHospitalController::class, 'store'])->name('homestayhospital.store');
+Route::get('homestayhospital/{homestayhospital}/edit', [HomestayNearHospitalController::class, 'edit'])->name('homestayhospital.edit');
+Route::put('homestayhospital/{homestayhospital}', [HomestayNearHospitalController::class, 'update'])->name('homestayhospital.update');
+Route::delete('homestayhospital/{homestayhospital}', [HomestayNearHospitalController::class, 'destroy'])->name('homestayhospital.destroy'); 

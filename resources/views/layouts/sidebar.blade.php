@@ -33,11 +33,16 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-solid fa-image"></i></div>
                         Galery
                     </a>
-                    <a class="nav-link {{ Route::is('review.index') ? 'active' : '' }}"
-                        href="{{ route('review.index') }}">
+                    <a class="nav-link {{ Route::is('favorite.index') ? 'active' : '' }}"
+                        href="{{ route('favorite.index') }}">
                         <div class="sb-nav-link-icon"><i class="fas fa-solid fa-heart"></i></div>
                         Favorite
                     </a>
+                    <a class="nav-link {{ Route::is('homestayhospital.index') ? 'active' : '' }}"
+                    href="{{ route('homestayhospital.index') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-solid fa-heart"></i></div>
+                    Homestay Near Hospital
+                </a>
                 </div>
             </div>
         </nav>
