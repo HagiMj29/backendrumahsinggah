@@ -127,15 +127,27 @@ class UserController extends Controller
     public function checkEmail(Request $request)
     {
         $request->validate(['email' => 'required|email']);
-
+    
         $user = User::where('email', $request->email)->first();
-
+    
         if ($user) {
-            return response()->json(['message' => 'Email exists in the system.'], 200);
+            return response()->json([
+                'message' => 'Email exists in the system.',
+                'user' => [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'phone' => $user->phone,
+                    'address' => $user->address,
+                    'picture' => $user->picture,
+                    'status' => $user->status,
+                ]
+            ], 200);
         } else {
             return response()->json(['message' => 'Email not found.'], 404);
         }
     }
+    
 
     public function resetPassword(Request $request, $id)
     {
