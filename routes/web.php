@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\GaleryController;
 use App\Http\Controllers\HomestayController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RoomController;
@@ -55,4 +56,11 @@ Route::get('review.create', [ReviewController::class, 'create'])->name('review.c
 Route::post('review/review', [ReviewController::class, 'store'])->name('review.store');
 Route::get('review/{review}/edit', [ReviewController::class, 'edit'])->name('review.edit');
 Route::put('review/{review}', [ReviewController::class, 'update'])->name('review.update');
-Route::delete('review/{review}', [ReviewController::class, 'destroy'])->name('review.destroy'); 
+Route::delete('review/{review}', [ReviewController::class, 'destroy'])->name('review.destroy');
+
+Route::get('galery.index', [GaleryController::class, 'index'])->name('galery.index');
+Route::get('galery.create', [GaleryController::class, 'create'])->name('galery.create');
+Route::post('galery/review', [GaleryController::class, 'store'])->name('galery.store');
+Route::get('galery/{galery}/edit', [GaleryController::class, 'edit'])->name('galery.edit');
+Route::put('galery/{galery}', [GaleryController::class, 'update'])->name('galery.update');
+Route::delete('galery/{galery}', [GaleryController::class, 'destroy'])->name('galery.destroy'); 

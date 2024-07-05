@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\BookingController;
+use App\Http\Controllers\API\GaleryController;
 use App\Http\Controllers\API\HomestayController;
 use App\Http\Controllers\API\ReviewController;
 use App\Http\Controllers\API\RoomController;
@@ -36,3 +37,8 @@ Route::post('/booking', [BookingController::class, 'store']);
 
 
 Route::get('/review', [ReviewController::class, 'index']);
+Route::post('/review', [ReviewController::class, 'store']);
+Route::put('reviews/{review}', [ReviewController::class, 'update']);
+Route::delete('reviews/{review}', [ReviewController::class, 'destroy']);
+
+Route::get('/galey', [GaleryController::class, 'index']);

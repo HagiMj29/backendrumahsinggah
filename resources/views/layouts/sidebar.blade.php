@@ -25,13 +25,19 @@
                     </a>
                     <a class="nav-link {{ Route::is('review.index') ? 'active' : '' }}"
                         href="{{ route('review.index') }}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-solid fa-circle-down"></i></div>
+                        <div class="sb-nav-link-icon"><i class="fas fa fa-star"></i></div>
                         Review
                     </a>
-                    {{-- <a class="nav-link" href="index.html">
-                        <div class="sb-nav-link-icon"><i class="fas fa-solid fa-cart-shopping"></i></div>
-                        Carts
-                    </a>  --}}
+                    <a class="nav-link {{ Route::is('galery.index') ? 'active' : '' }}"
+                        href="{{ route('galery.index') }}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-solid fa-image"></i></div>
+                        Galery
+                    </a>
+                    <a class="nav-link {{ Route::is('review.index') ? 'active' : '' }}"
+                        href="{{ route('review.index') }}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-solid fa-heart"></i></div>
+                        Favorite
+                    </a>
                 </div>
             </div>
         </nav>
