@@ -123,4 +123,36 @@ class UserController extends Controller
             return response()->json(['message' => 'User Delete Error'], 500);
         }
     }
+
+    public function checkEmail(Request $request)
+    {
+        $request->validate(['email' => 'required|email']);
+
+        $user = User::where('email', $request->email)->first();
+
+        if ($user) {
+            return response()->json(['message' => 'Email exists in the system.'], 200);
+        } else {
+            return response()->json(['message' => 'Email not found.'], 404);
+        }
+    }
+
+    public function resetPassword(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+    
+        $validateData = $request->validate([
+            'password' => 'required|min:8|confirmed',
+        ]);
+    
+        $validateData['password'] = bcrypt($validateData['password']);
+    
+        try {
+            $user->update(['password' => $validateData['password']]);
+            return response()->json(['message' => 'Password updated successfully.'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Failed to update password', 'error' => $e->getMessage()], 500);
+        }
+    }
+    
 }

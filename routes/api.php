@@ -42,3 +42,6 @@ Route::put('reviews/{review}', [ReviewController::class, 'update']);
 Route::delete('reviews/{review}', [ReviewController::class, 'destroy']);
 
 Route::get('/galery', [GaleryController::class, 'index']);
+
+Route::post('check-email', [UserController::class, 'checkEmail']);
+Route::post('reset-password/{id}', [UserController::class, 'resetPassword']);
