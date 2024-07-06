@@ -12,21 +12,57 @@ class ReviewController extends Controller
 {
     public function index()
 {
-    $reviews = Review::latest()->get();
-    
+    // $reviews = Review::latest()->get();
+    $reviews = Review::with('user', 'homestay')->latest()->get();
+
     $result = $reviews->map(function ($data){
         return [
             'id' => $data->id,
             'user_id' => $data->user_id,
-            'homestays_id' => $data->homestays_id, 
-            'homestay_name' => $data->homestay->name, 
+            'homestays_id' => $data->homestays_id,
+            'homestay_name' => $data->homestay->name,
             'rating' => $data->rating,
             'review' => $data->review,
+            'created_at' => $data->created_at->toDateTimeString(),
+            'user' => [
+                'id' => $data->user->id,
+                'name' => $data->user->name,
+            ],
         ];
     });
-    
+
     return response()->json(['message' => 'Data accessed successfully', 'result' => $result], 200);
 }
+
+    public function getReviewsByHomestaysId($homestays_id)
+    {
+        // $reviews = Review::where('homestays_id', $homestays_id)
+        //                 ->latest()
+        //                 ->get();
+
+        $reviews = Review::with('user', 'homestay')
+        ->where('homestays_id', $homestays_id)
+        ->latest()
+        ->get();
+
+        $result = $reviews->map(function ($data) {
+            return [
+                'id' => $data->id,
+                'user_id' => $data->user_id,
+                'homestays_id' => $data->homestays_id,
+                'homestay_name' => $data->homestay->name,
+                'rating' => $data->rating,
+                'review' => $data->review,
+                'created_at' => $data->created_at->toDateTimeString(),
+                'user' => [
+                    'id' => $data->user->id,
+                    'name' => $data->user->name,
+                ],
+            ];
+        });
+
+        return response()->json(['message' => 'Data accessed successfully', 'result' => $result], 200);
+    }
 
 public function store(Request $request)
 {

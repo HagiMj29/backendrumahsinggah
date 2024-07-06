@@ -16,7 +16,7 @@ class UserController extends Controller
         $users = User::latest()->get();
 
         $result = $users->map(function ($data){
-            
+
             return [
                 'id'=>$data->id,
                 'name'=>$data->name,
@@ -42,20 +42,20 @@ class UserController extends Controller
             'password' => 'required|string|min:8',
             'phone'=> 'required',
         ]);
-    
+
         $user = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
             'phone' => $request->input('phone'),
             'status'=>'user'
-        ]);  
-        
+        ]);
+
         $result = $user;
-        
+
         return response()->json(['message' => 'Data Berhasil di Regist', 'result'=>$result], 201);
-    
-        
+
+
     }
 
     public function login(Request $request){
@@ -63,14 +63,38 @@ class UserController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-    
+
         $credentials = $request->only('email', 'password');
-    
+
+        // if (Auth::attempt($credentials)) {
+        //     // Authentication passed...
+        //     $user = Auth::user();
+
+        //     return response()->json(['user' => $user], 200);
+        // }
+
         if (Auth::attempt($credentials)) {
-            // Authentication passed...
             $user = Auth::user();
-    
-            return response()->json(['user' => $user], 200);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Login successful',
+                'user' => [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'password' => $request->password,
+                    'email' => $user->email,
+                    'phone' => $user->phone,
+                    'status' => $user->status,
+                    'address' => $user->address ?? '',
+                    'picture' => $user->picture ?? '',
+                ],
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid email or password',
+            ], 401);
         }
     }
 
@@ -85,7 +109,7 @@ class UserController extends Controller
             'phone' => 'required',
             'address' => 'required',
             'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status' => 'user',
+            'status' => 'required',
         ]);
 
         if ($request->hasFile('picture')) {
@@ -100,16 +124,23 @@ class UserController extends Controller
         }
 
         if ($request->filled('password')) {
-            $validateData['password'] = bcrypt($validateData['password']);
+            // $validateData['password'] = bcrypt($validateData['password']);
+            $validateData['password'] = Hash::make($validateData['password']);
         } else {
             unset($validateData['password']);
         }
 
-        $result =$validateData;
+        // $result =$validateData;
 
+        // try {
+        //     $user->update($validateData);
+        //     return response()->json(['message' => 'User updated successfully','result' => $result], 200);
+        // } catch (\Exception $e) {
+        //     return response()->json(['message' => 'Failed to update user', 'error' => $e->getMessage()], 500);
+        // }
         try {
             $user->update($validateData);
-            return response()->json(['message' => 'User updated successfully','result' => $result], 200);
+            return response()->json(['message' => 'User updated successfully'], 200);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Failed to update user', 'error' => $e->getMessage()], 500);
         }
@@ -127,9 +158,9 @@ class UserController extends Controller
     public function checkEmail(Request $request)
     {
         $request->validate(['email' => 'required|email']);
-    
+
         $user = User::where('email', $request->email)->first();
-    
+
         if ($user) {
             return response()->json([
                 'message' => 'Email exists in the system.',
@@ -147,18 +178,18 @@ class UserController extends Controller
             return response()->json(['message' => 'Email not found.'], 404);
         }
     }
-    
+
 
     public function resetPassword(Request $request, $id)
     {
         $user = User::findOrFail($id);
-    
+
         $validateData = $request->validate([
             'password' => 'required|min:8|confirmed',
         ]);
-    
+
         $validateData['password'] = bcrypt($validateData['password']);
-    
+
         try {
             $user->update(['password' => $validateData['password']]);
             return response()->json(['message' => 'Password updated successfully.'], 200);
@@ -166,5 +197,5 @@ class UserController extends Controller
             return response()->json(['message' => 'Failed to update password', 'error' => $e->getMessage()], 500);
         }
     }
-    
+
 }

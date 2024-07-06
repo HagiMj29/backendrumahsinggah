@@ -14,22 +14,23 @@ class BookingController extends Controller
 {
     public function index(){
         $room = Booking::with('homestay')->latest()->get();
-    
+
         $result = $room->map(function ($data){
             return [
                 'id' => $data->id,
                 'user_id' => $data->user_id,
-                'homestays_id' => $data->homestays_id, 
-                'homestay_name' => $data->homestay->name, 
+                'homestays_id' => $data->homestays_id,
+                'homestay_name' => $data->homestay->name,
                 'rooms_id' => $data->rooms_id,
                 'rooms_type' => $data->room->type,
                 'day' => $data->day,
                 'total_price' => $data->total_price,
-                'status' => $data->staus,
+                'status' => $data->status,
                 'status_room' => $data->status_room,
+                'created_at' => $data->created_at->toDateString(),
             ];
         });
-    
+
         return response()->json(['message' => 'Data Berhasil di Akses', 'result' => $result], 200);
     }
 
@@ -76,7 +77,7 @@ class BookingController extends Controller
         }
     }
 
-    
+
 
 
 public function destroy(Booking $booking)
@@ -87,6 +88,6 @@ public function destroy(Booking $booking)
         return redirect()->back()->with('error', 'Data Failed to delete');
     }
 }
-    
-        
+
+
 }
