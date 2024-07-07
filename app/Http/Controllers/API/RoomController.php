@@ -21,7 +21,7 @@ class RoomController extends Controller
                 'type' => $data->type,
                 'description' => $data->description,
                 'quota' => $data->quota,
-                'price' => $data->price,
+                'price' => $data->formatted_price,
                 'picture' => $data->images,
             ];
         });

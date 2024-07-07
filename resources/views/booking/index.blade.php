@@ -42,7 +42,7 @@
                             <td class="text-center">{{ $data->homestay->name }}</td>
                             <td class="text-center">{{ $data->room->type }}</td>
                             <td class="text-center">{{ $data->day }}</td>
-                            <td class="text-center">{{ $data->total_price }}</td>
+                            <td class="text-center">{{ $data->formatted_price }}</td>
                             <td class="text-center">{{ $data->status }}</td>
                             <td class="text-center">{{ $data->status_room }}</td>
                             <td class="text-center">

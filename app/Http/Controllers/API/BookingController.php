@@ -24,7 +24,7 @@ class BookingController extends Controller
                 'rooms_id' => $data->rooms_id,
                 'rooms_type' => $data->room->type,
                 'day' => $data->day,
-                'total_price' => $data->total_price,
+                'total_price' => $data->formatted_price,
                 'status' => $data->status,
                 'status_room' => $data->status_room,
                 'created_at' => $data->created_at->toDateString(),

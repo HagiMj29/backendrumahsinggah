@@ -41,7 +41,7 @@
                             <td class="text-center">{{ $data->type }}</td>
                             <td class="text-center">{{ $data->description }}</td>
                             <td class="text-center">{{ $data->quota }}</td>
-                            <td class="text-center">{{ $data->price }}</td>
+                            <td class="text-center">{{ $data->formatted_price  }}</td>
                             <td class="text-center">
                                 @foreach ($data->images as $image)
                                 <img src="{{ asset('images/' . $image->filename) }}" alt="Room Image" style="height: 150px;">

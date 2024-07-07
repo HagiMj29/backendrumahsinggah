@@ -20,6 +20,12 @@ class Booking extends Model
         'status_room',
     ];
 
+    public function getFormattedPriceAttribute()
+    {
+        return 'Rp ' . number_format($this->total_price, 0, ',', '.');
+    }
+
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'id');

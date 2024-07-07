@@ -20,6 +20,11 @@ class Room extends Model
         'price',
     ];
 
+    public function getFormattedPriceAttribute()
+    {
+        return 'Rp ' . number_format($this->price, 0, ',', '.');
+    }
+
     public function homestay(): BelongsTo
     {
         return $this->belongsTo(Homestay::class, 'homestays_id', 'id');
