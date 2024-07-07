@@ -22,7 +22,7 @@ class Booking extends Model
 
     public function getFormattedPriceAttribute()
     {
-        return 'Rp ' . number_format($this->total_price, 0, ',', '.');
+        return 'Rp. ' . number_format($this->total_price, 0, ',', '.');
     }
 
 
